@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.use('/api/v1/', authRouter);
 
+console.log('database:',process.env.MONGODB);
 
  mongoose.connect(process.env.MONGODB)
 .then(()=>console.log('Successfully Connected To DataBase ...'))

@@ -6,7 +6,7 @@ const authController = require('../controllers/authControllers');
 const {
   createGroup,
   getGroup,
-  getGroupById,
+  getGroupById, 
   updateGroup,
   deleteGroup
 } = require('../controllers/groupController.js');
