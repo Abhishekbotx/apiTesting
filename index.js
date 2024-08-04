@@ -14,9 +14,17 @@ app.use('/api/v1/', authRouter);
 
 console.log('database:',process.env.MONGODB);
 
- mongoose.connect(process.env.MONGODB)
-.then(()=>console.log('Successfully Connected To DataBase ...'))
-.catch((error)=>console.error('DataBase Connection Failed ...', error));
+
+
+const connect = async () => {
+    try {
+        await mongoose.connect(process.env.MONGODB);
+        console.log('db connection successful');
+    } catch (error) {
+        console.error('Unable to connect with DB:', error);
+    }
+};
+
 
 app.use((err, res, req) => {
     err.statusCode = err.statusCode || 500;
@@ -31,4 +39,5 @@ app.use((err, res, req) => {
 const PORT = process.env.PORT;
 app.listen(PORT, ()=>{
     console.log(`App Is Running On Port : ${PORT}`);
+    connect()
 });
